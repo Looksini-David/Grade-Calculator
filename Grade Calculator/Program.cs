@@ -10,24 +10,47 @@ namespace Grade_Calculator
     {
         static void Main(string[] args)
         {
-             Console.Write("Enter Student Name: ");
+            Console.Write("Enter Student Name: ");
             string name = Console.ReadLine();
+            if (name.All(char.IsDigit))
+            {
+                Console.WriteLine("Invalid student name");
+            }
 
-            Console.Write("Enter Marks (out of 100): ");
-            int marks = Convert.ToInt32(Console.ReadLine());
+            else
+            {
+                Console.Write("Enter Marks (out of 100): ");
+                string grade = "";
 
-            string grade = "F";
-            if (marks > 75)
-                grade = "A";
-            else if (marks > 65)
-                grade = "B";
-            else if (marks > 55)
-                grade = "C";
-            else if (marks > 45)
-                grade = "S";
+                try
+                {
+                    int marks = Convert.ToInt32(Console.ReadLine());
+                    if (marks <= 100)
+                    {
+                        if (marks > 75)
+                            grade = "A";
+                        else if (marks > 65)
+                            grade = "B";
+                        else if (marks > 55)
+                            grade = "C";
+                        else if (marks > 45)
+                            grade = "S";
+                        else if (marks <= 45)
+                            grade = "F";
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid student marks");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid student marks");
+                }
 
-            Console.WriteLine("Student: " + name + ", Grade: " + grade);
-            Console.ReadLine();
+                Console.WriteLine("Student: " + name + ", Grade: " + grade);
+                Console.ReadLine();
+            }
         }
     }
 }
